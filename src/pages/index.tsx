@@ -11,7 +11,6 @@ interface HomeProps {
   }
 }
 
-
 export default function Home({product}: HomeProps) {
   
  return (
@@ -40,13 +39,12 @@ export const getStaticProps: GetStaticProps = async () => {
   
   const product = {
     priceId: price.id,
-    amount: new Intl.NumberFormat ('en-US',{
+    amount: price.unit_amount ? new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
-    }).format(price.unit_amount / 100),
+    }).format(price.unit_amount / 100) : null,
   };
   
-
 
   return {
     props: {
